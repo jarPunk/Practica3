@@ -1,20 +1,33 @@
 #ifndef PULSESENSOR_H
 #define PULSESENSOR_H
 
-const int pulsePin = 32;  
-int pulseValue = 0;       
-int pulseCount = 0;       
+class PulseSensor {
+  private:
+    int pin;
+    int pulseCount;
 
-void setupPulseSensor() {
-  pinMode(pulsePin, INPUT);   
-}
+  public:
+    PulseSensor(int pin) {
+      this->pin = pin;
+      pulseCount = 0;
+      pinMode(pin, INPUT);
+    }
 
-int readPulse() {
-  return analogRead(pulsePin);
-}
+    int read() {
+      return analogRead(pin);
+    }
 
-int calculatePPM() {
-  return pulseCount * 4;  
-}
+    void countPulse() {
+      pulseCount++;
+    }
+
+    int calculatePPM() {
+      return pulseCount * 4;
+    }
+
+    void resetCount() {
+      pulseCount = 0;
+    }
+};
 
 #endif

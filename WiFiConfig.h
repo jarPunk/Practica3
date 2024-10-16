@@ -3,17 +3,25 @@
 
 #include <WiFi.h>
 
-// Configuración de WiFi
-const char* ssid = "Jar_Punk";
-const char* password = "doom3242";
+class WiFiConfig {
+  private:
+    const char* ssid;
+    const char* password;
 
-void setupWiFi() {
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.println("Conectando al WiFi...");
-  }
-  Serial.println("Conectado al WiFi");
-}
+  public:
+    WiFiConfig(const char* ssid, const char* password) {
+      this->ssid = ssid;
+      this->password = password;
+    }
+
+    void connect() {
+      WiFi.begin(ssid, password);
+      while (WiFi.status() != WL_CONNECTED) {
+        delay(500);
+        Serial.println("Conectando al WiFi...");
+      }
+      Serial.println("Conectado al WiFi");
+    }
+};
 
 #endif

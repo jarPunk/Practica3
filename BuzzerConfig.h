@@ -1,11 +1,24 @@
 #ifndef BUZZERCONFIG_H
 #define BUZZERCONFIG_H
 
-const int buzzerPin = 13;
+class BuzzerConfig {
+  private:
+    int pin;
 
-void setupBuzzer() {
-  pinMode(buzzerPin, OUTPUT);
-  digitalWrite(buzzerPin, LOW);  
-}
+  public:
+    BuzzerConfig(int pin) {
+      this->pin = pin;
+      pinMode(pin, OUTPUT);
+      digitalWrite(pin, LOW);  
+    }
+
+    void on() {
+      digitalWrite(pin, HIGH);
+    }
+
+    void off() {
+      digitalWrite(pin, LOW);
+    }
+};
 
 #endif
